@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 
+<mapper namespace="com.dao.CatalogDAO">
+	<resultMap type="com.domain.Catalog" id="CatalogMap">
+		<id property="id" column="id"/>
+		<result property="catalogName" column="catalogName"/>
+		<result property="catalogNum" column="catalogNum"/>
+		<result property="childNode" column="childNode"/>
+		<result property="parentNum" column="parentNum"/>
+		<result property="createTime" column="createTime"/>
+	</resultMap>
+	
+	<sql id="Catalog_filed">
+		 id,catalogName, catalogNum,childNode,parentNum,createTime
+	</sql>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id">
+  		insert catalog (catalogName,catalogNum,childNode,parentNum,createTime) 
+  		values (#{catalogName}, #{catalogNum}, #{childNode},#{parentNum}, now());
+  </insert>
+  
+  <select id="listCatalog" resultMap="CatalogMap">
+  		select <include refid="Catalog_filed"></include> from catalog where childNode= #{childNode};
+  </select>
+ 
+</mapper>

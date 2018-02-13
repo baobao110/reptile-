@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 
+<mapper namespace="com.dao.CommodityDAO">
+	<resultMap type="com.domain.Commodity" id="CommodityMap">
+		<id property="id" column="id"/>
+		<result property="commName" column="commName"/>
+		<result property="commPrice" column="commPrice"/>
+		<result property="author" column="author"/>
+		<result property="press" column="press"/>
+		<result property="pubData" column="pubData"/>
+		<result property="isbn" column="isbn"/>
+		<result property="commLabel" column="commLabel"/>
+		<result property="commCatalog" column="commCatalog"/>
+		<result property="preface" column="preface"/>
+		<result property="pictureName" column="pictureName"/>
+		<result property="parentCatalogNum" column="parentCatalogNum"/>
+		<result property="childCatalogNum" column="childCatalogNum"/>
+		<result property="score" column="score"/>
+	</resultMap>
+	
+	<sql id="commodity_filed">
+		 id,commName, commPrice, press, author, pubData, isbn, commLabel,commCatalog,preface,pictureName,parentCatalogNum,childCatalogNum,score
+	</sql>
+	
+  <insert id="add" useGeneratedKeys="true" keyProperty="id">
+  	insert commodity(commName,commPrice, press, author, pubData, isbn,commLabel,commCatalog,preface,pictureName,parentCatalogNum,childCatalogNum,score) 
+  		values (#{commName}, #{commPrice}, #{press},#{author}, #{pubData},#{isbn},#{commLabel},#{commCatalog},#{preface},#{pictureName},#{parentCatalogNum},#{childCatalogNum},#{score});
+  </insert>
+	
+	
+</mapper>
